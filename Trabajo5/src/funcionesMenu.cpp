@@ -5,6 +5,13 @@ using namespace std;
 int usoPrep = 0;
 
 void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoTxt, string textoNuevoTxt, string nombreTexto, string nombreArchivoSalidaConteo) {
+    if (userInput >= 1 && userInput <= 13) {
+        if (!user.verificarPermiso(userInput)) {
+            cout << "No tiene este permiso" << endl;
+            return;
+        }
+    }
+   
     switch (userInput) {
     case 0: { // Salir
         seguir = false;
@@ -16,18 +23,12 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
             int suma = user.sumaVector();
             cout << "1.- La suma del vector es: " << suma << endl;
         }
-        else {
-            cout << "No tiene este permiso" << endl;
-        }
         break;
     }
     case 2: { // Promedio
         if (user.verificarPermiso(2)) {
             float promedio = user.promedioVector();
             cout << "2.- El promedio del vector es: " << promedio << endl;
-        }
-        else {
-            cout << "No tiene este permiso" << endl;
         }
         break;
     }
@@ -36,18 +37,12 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
             int moda = user.modaVector();
             cout << "3.- La moda del vector es: " << moda << endl;
         }
-        else {
-            cout << "No tiene este permiso" << endl;
-        }
         break;
     }
     case 4: { // Contar
         if (user.verificarPermiso(4)) {
             int cantidad = user.contarVector();
             cout << "4.- El vector tiene " << cantidad << " numeros" << endl;
-        }
-        else {
-            cout << "No tiene este permiso" << endl;
         }
         break;
     }
@@ -62,9 +57,6 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
                 cout << "5.- El archivo ya existe" << endl;
             }
         }
-        else {
-            cout << "No tiene este permiso" << endl;
-        }
         break;
     }
     case 6: { // Escribir en archivo
@@ -76,9 +68,6 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
             else {
                 user.escribirArchivo(pathNuevoArchivo, textoNuevoTxt);
             }
-        }
-        else {
-            cout << "No tiene este permiso" << endl;
         }
         break;
     }
@@ -96,9 +85,6 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
             }
             break;
         }
-        else {
-            cout << "No tiene este permiso" << endl;
-        }
     }
     case 8: {
         if (user.verificarPermiso(8)) {
@@ -113,9 +99,6 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
                 usoPrep = 1;
             }
         }
-        else {
-            cout << "No tiene este permiso" << endl;
-        }
         break;
     }
     case 9: {
@@ -125,14 +108,29 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
         else if (usoPrep == 0) {
             cout << "Debe usar la opcion 8 antes de usar la opcion 9" << endl;
         }
-        else {
-            cout << "No tiene este permiso" << endl;
-        }
         break;
     }
     case 10: {
         if ((user.verificarPermiso(10))) {
             user.buscador();
+        }
+        break;
+    }
+    case 11: {
+        if (user.verificarPermiso(11)) {
+            cout << "Operacion 11" <<  endl;
+        }
+        break;
+    }
+    case 12: {
+        if (user.verificarPermiso(12)) {
+            cout << "Operacion 12" << endl;
+        }
+        break;
+    }
+    case 13: {
+        if (user.verificarPermiso(13)) {
+            cout << "Operacion 13" << endl;
         }
         break;
     }
@@ -144,7 +142,7 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
 
 void mostrarMenu() {
     ifstream menu(getenv("DB_MENU"));
-    vector<vector<string>> opciones(11);
+    vector<vector<string>> opciones(14);
     string linea;
     while (getline(menu, linea)) {
         vector<string> v1;

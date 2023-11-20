@@ -14,8 +14,10 @@ OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 TARGET = app
 TARGET2 = app2  # Segundo programa ejecutable
 TARGET3 = app3  # Tercer progrma
+TARGET4 = makeTree
 
-all: $(TARGET) $(TARGET2) $(TARGET3)
+
+all: $(TARGET) $(TARGET2) $(TARGET3) $(TARGET4)
 
 $(TARGET): $(OBJ_DIR)/main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
@@ -26,8 +28,11 @@ $(TARGET2): $(OBJ_DIR)/main2.o
 $(TARGET3): $(OBJ_DIR)/buscador.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
+$(TARGET4): $(OBJ_DIR)/makeTree.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf $(OBJ_DIR) $(TARGET) $(TARGET2) $(TARGET3)
+	rm -rf $(OBJ_DIR) $(TARGET) $(TARGET2) $(TARGET3) $(TARGET4)

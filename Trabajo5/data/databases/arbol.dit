@@ -1,0 +1,51 @@
+{
+    "dirBase": "../Trabajo5/data/tree/",
+    "objetos": [
+        {"tipo" : "archivo", "nombre" : "file1", "contenido" : "lalal" , "permisos" : ["escritura","lectura"]},
+        {"tipo" : "archivo", "nombre" : "file2", "contenido" : "AAAAA" , "permisos" : ["lectura"]},
+        {"tipo" : "archivo", "nombre" : "file3", "contenido" : "AUGHH" , "permisos" : ["escritura"]},
+        {
+            "tipo" : "directorio",
+            "nombre" : "dir1",
+            "objetos" : [
+                {"tipo" : "archivo", "nombre" : "file1.1", "contenido" : "lalal" , "permisos" : ["escritura","lectura"]},
+                {"tipo" : "archivo", "nombre" : "file1.2", "contenido" : "AAAAA" , "permisos" : ["lectura"]},
+                {"tipo" : "archivo", "nombre" : "file1.3", "contenido" : "AUGHH" , "permisos" : ["escritura"]},
+                {
+                    "tipo" : "directorio",
+                    "nombre" : "dir1.1.1",
+                    "objetos" : [
+                        {"tipo" : "archivo", "nombre" : "file1.1.1.1", "contenido" : "TALK" , "permisos" : ["escritura"]}
+                    ]
+                }
+            ]
+        },
+        {
+            "tipo" : "directorio",
+            "nombre" : "dir2",
+            "objetos" : []
+        },
+        {
+            "tipo" : "directorio",
+            "nombre" : "dir3",
+            "objetos" : [
+                {"tipo" : "archivo", "nombre" : "file3.1", "contenido" : "lalal" , "permisos" : ["escritura","lectura"]},
+                {"tipo" : "archivo", "nombre" : "file3.2", "contenido" : "AAAAA" , "permisos" : ["lectura"]},
+                {"tipo" : "archivo", "nombre" : "file3.3", "contenido" : "AUGHH" , "permisos" : ["escritura"]},
+                {
+                    "tipo" : "directorio",
+                    "nombre" : "dir3.1",
+                    "objetos" : [
+                        {"tipo" : "archivo", "nombre" : "file4", "contenido" : "TALK" , "permisos" : ["escritura"]}
+                    ]
+                },
+                {
+                    "tipo" : "directorio",
+                    "nombre" : "dir3.2",
+                    "objetos" : [
+                    ]
+                }
+            ]
+        }
+    ]
+}
