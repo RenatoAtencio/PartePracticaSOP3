@@ -1,1 +1,0 @@
-Pedro,admin;Juan,userRookie;Mateo,userRookie;Kylian,userGeneral;Pol,admin;
