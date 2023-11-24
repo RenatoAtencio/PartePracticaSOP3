@@ -36,3 +36,20 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET) $(TARGET2) $(TARGET3) $(TARGET4)
+
+#CC = g++
+#CFLAGS = -Wall -std=c++11
+#LDFLAGS = -lGL -lglut -lGLU
+
+#TARGET = grafico
+#SRC = grafico.cpp
+
+#all: $(TARGET)
+
+#$(TARGET): $(SRC)
+#	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LDFLAGS)
+
+#.PHONY: clean
+
+#clean:
+#	rm -f $(TARGET)
