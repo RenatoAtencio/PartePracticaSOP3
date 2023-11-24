@@ -79,7 +79,7 @@ void init() {
 
 int main(int argc, char** argv) {
     if (argc != 2) {
-        cerr << "Uso: " << argv[0] << " <ruta_archivo>" << endl;
+        cerr << "Use: " << argv[0] << " <ruta_archivo>" << endl;
         return EXIT_FAILURE;
     }
 
@@ -98,6 +98,4 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-
-
-///home/tomas/Documentos/U/6to Semestre/INFO198_SIs_op/NoListos/ProgExterno3p3/datos.gra
+// usar ./grafico ../Trabajo5/data/databases/datos.gra

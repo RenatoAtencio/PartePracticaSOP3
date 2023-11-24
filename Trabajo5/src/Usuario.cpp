@@ -105,11 +105,11 @@ public:
     void contarPalabras(string nombreArchivo, string pathSalidaConteo) {
         // Llamar a la programa externo, eliminar simbolos y contar palabras, elminar el archivo temporal al final
         // Ya verifique que el archivo existe
-        string commandElimSimbolos = "python3 " + string(getenv("PATH_PROGRAMAS_EXTERNOS")) + "eliminarSimbolos.py " + nombreArchivo;
+        string commandElimSimbolos = "python3 " + string(getenv("PATH_PROGRAMAS_EXTERNOS_PYTHON")) + "eliminarSimbolos.py " + nombreArchivo;
         int successElimSimbolos = system(commandElimSimbolos.c_str());
         if (successElimSimbolos == 0) {
             cout << "Se llamo al proceso para eliminar simbolos correctamente" << endl;
-            string commandContarPalabras = "python3 " + string(getenv("PATH_PROGRAMAS_EXTERNOS")) + "contarPalabras.py " + nombreArchivo + " " + pathSalidaConteo;
+            string commandContarPalabras = "python3 " + string(getenv("PATH_PROGRAMAS_EXTERNOS_PYTHON")) + "contarPalabras.py " + nombreArchivo + " " + pathSalidaConteo;
             int successContarPalabras = system(commandContarPalabras.c_str());
             if (successContarPalabras == 0) {
                 cout << "Se llamo al proceso para contar palabras correctamente" << endl;
@@ -130,7 +130,7 @@ public:
         if (file) { // Si existe el file.idx lo borra
             remove("data/Files/OutputFiles/file.idx");
         }
-        string commandPrepArchivos = "../ProgramasExternos/app " + string(getenv("EXTENSION")) + " " + string(getenv("PATH_RAWFILES")) + " " + string(getenv("PATH_OUTPUTFILES")) + " " + string(getenv("AMOUNT_THREADS"));
+        string commandPrepArchivos = "../ProgramasExternos/countWords " + string(getenv("EXTENSION")) + " " + string(getenv("PATH_RAWFILES")) + " " + string(getenv("PATH_OUTPUTFILES")) + " " + string(getenv("AMOUNT_THREADS"));
         int successPrepararArchivos = system(commandPrepArchivos.c_str());
         if (successPrepararArchivos == 0) {
             cout << "Proceso fue llamado correctamente" << endl;
@@ -145,7 +145,7 @@ public:
         file.open("data/Files/OutputFiles/file.idx");
         if (!file) {
             file.close();
-            string commandCrearIndice = "../ProgramasExternos/app2 " + string(getenv("PATH_OUTPUTFILES")) + " " + string(getenv("INVERTED_INDEX_FILE"));
+            string commandCrearIndice = "../ProgramasExternos/makeInvertedIndex " + string(getenv("PATH_OUTPUTFILES")) + " " + string(getenv("INVERTED_INDEX_FILE"));
             int successIndice = system(commandCrearIndice.c_str());
             if (successIndice != 0) {
                 cout << "Hubo un error al crear el indice" << endl;
@@ -166,7 +166,7 @@ public:
             cout << "El file.idx aun no ha sido creado (Usar 9)" << endl;
         }
         else {
-            string comandoBusqueda = "../ProgramasExternos/app3 " + string(getenv("INVERTED_INDEX_FILE")) + " " + string(getenv("TOPK"));
+            string comandoBusqueda = "../ProgramasExternos/invertedIndexSearcher " + string(getenv("INVERTED_INDEX_FILE")) + " " + string(getenv("TOPK"));
             cout << comandoBusqueda << endl;
             int successBusqueda = system(comandoBusqueda.c_str());
             if (successBusqueda != 0) {
