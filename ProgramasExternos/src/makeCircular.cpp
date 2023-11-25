@@ -5,17 +5,18 @@
 #include <filesystem>
 #include <vector>
 #include "../include/json.hpp"
-
+#include <unistd.h>
 
 using namespace std;\
 
 // ./makeCircular ../Trabajo5/data/databases/ circular.dre
 
-vector<string> parseData(string data){
+// Funcion que hace parse de un string segun un char delimitador
+vector<string> parseString(string data, char delimiter){
     vector<string> files;
     istringstream stream(data);
     string file;
-    while (getline(stream, file, '|')) {
+    while (getline(stream, file, delimiter)) {
         files.push_back(file);
     }
     // for (const auto& e : files) {
@@ -25,7 +26,39 @@ vector<string> parseData(string data){
 }
 
 void makeCircular(string root_path,string dirs,string data){
-    vector<string> files = parseData(data);
+    size_t posRoot = root_path.find("=");
+    root_path = root_path.substr(posRoot+1);
+    // le quito el "dirs=" y lo paso los dirs a un vector
+    size_t pos = dirs.find("=");
+    dirs = dirs.substr(pos + 1);
+    vector<string> vectorDirs = parseString(dirs,';');
+    // Creo un vector con los dirs y sus respectivos files
+    vector<string> files = parseString(data,'|');
+
+    for (const auto& dir : vectorDirs) {
+        // cout << root_path << " " <<dir << endl;
+        mkdir((root_path + dir).c_str(), S_IRWXU | S_IRWXG | S_IRWXO); // Crea las carpetas
+    }
+
+    // cout << root_path + vectorDirs[0] << " " << root_path + vectorDirs[vectorDirs.size()-1] << endl;
+
+    if (symlink((root_path + vectorDirs[0]).c_str(), (root_path + vectorDirs[vectorDirs.size()-1]).c_str()) == 0) {// Crea el enlace virtual (Creo que no sirve en wsl)
+        cout << "Enlace virtual creado exitosamente" << endl;
+    } else {
+        cout << "No se pudo crear el enlace virtual" << endl;
+    }
+
+    for (const auto& dirFiles : files) {
+        string allFiles,dir;
+        size_t posFile = dirFiles.find("=");
+        dir = dirFiles.substr(0,posFile);
+        allFiles = dirFiles.substr(posFile+1);
+        // cout << allFiles << " " << dir << endl;
+        vector<string> vectorFiles = parseString(allFiles,';');
+        for (const auto& file : vectorFiles) {
+            ofstream outFile(root_path + dir + "/" + file + ".txt");
+        }
+    }
 }
 
 int main(int argc, char* argv[]) {
