@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
 
     // Entrada en la consola, paso los valores de las flags a su respectiva variable
     char c;
-    string nombreUsuario, vectorNumerosStr, nombreNuevoTxt, textoNuevoTxt,  nombreTexto, nombreTextoSalidaConteo;
+    string nombreUsuario, vectorNumerosStr, nombreNuevoTxt, textoNuevoTxt, nombreTexto, nombreTextoSalidaConteo;
     vector<int> vectorNumerosInt;
     while ((c = getopt(argc, argv, "u:v:f:t:i:o:")) != -1) {
         switch (c) {
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
             int selecion;
             cout << "Seleccione una opcion: ";
             cin >> selecion;
-            verSeleccion(seguir,user,selecion,nombreNuevoTxt,textoNuevoTxt, nombreTexto, nombreTextoSalidaConteo);
+            verSeleccion(seguir, user, selecion, nombreNuevoTxt, textoNuevoTxt, nombreTexto, nombreTextoSalidaConteo);
             cout << "###############################" << endl;
         }
     }

@@ -55,7 +55,7 @@ void createFile(string filePath, json file) {
                 fs::perms::owner_read | fs::perms::group_read | fs::perms::group_read,
                 fs::perm_options::add
             );
-            cout << filePath + fileName << " lectura" << endl;
+            // cout << filePath + fileName << " lectura" << endl;
         }
         if (permiso == "escritura") {
             fs::permissions(
@@ -63,7 +63,7 @@ void createFile(string filePath, json file) {
                 fs::perms::owner_write | fs::perms::group_write | fs::perms::group_write,
                 fs::perm_options::add
             );
-            cout << filePath + fileName << " escritura" << endl;
+            // cout << filePath + fileName << " escritura" << endl;
         }
     }
 }

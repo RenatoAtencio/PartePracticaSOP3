@@ -118,19 +118,19 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
     }
     case 11: {
         if (user.verificarPermiso(11)) {
-            cout << "Operacion 11" <<  endl;
+            user.makeTreeDirectory();
         }
         break;
     }
     case 12: {
         if (user.verificarPermiso(12)) {
-            cout << "Operacion 12" << endl;
+            user.makeCircularDirectory();
         }
         break;
     }
     case 13: {
         if (user.verificarPermiso(13)) {
-            cout << "Operacion 13" << endl;
+            user.makeGraph();
         }
         break;
     }
