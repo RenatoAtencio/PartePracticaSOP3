@@ -1,5 +1,7 @@
 dirbase=../Trabajo5/data/circular/
-dirs=dir1;dir2;dir3;dir4;dir5
+dirs=dir1;dir2;dir3;dir4;dir5;dir6;dir7
 dir1=file1;file2
 dir2=file3
-dir5=file4;file5;file6 
+dir5=file4.txt;file5;file6 
+dir6=file11
+dir7=file7;file8;file9;file10

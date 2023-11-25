@@ -77,9 +77,11 @@ void init() {
     gluOrtho2D(-100.0, 100.0, -100.0, 100.0); // Establece el rango de -100 a 100 en ambos ejes
 }
 
+// Comentar las funciones
+// ver si se puede solo mostrar el primer cuadrante de la grafica
 int main(int argc, char** argv) {
-    if (argc != 2) {
-        cerr << "Use: " << argv[0] << " <ruta_archivo>" << endl;
+    if (argc != 3) {
+        cerr << "Para ejecutar use: " << argv[0] << " <ruta_archivo.gra> <nombre_archivo.gra>" << endl;
         return EXIT_FAILURE;
     }
 
@@ -90,7 +92,8 @@ int main(int argc, char** argv) {
     glutCreateWindow("Grafico de Lineas");
 
     init();
-    loadData(argv[1]);
+    string fullPath = string(argv[1]) + string(argv[2]);
+    loadData(fullPath);
 
     glutDisplayFunc(display);
     glutMainLoop();
@@ -98,4 +101,4 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-// usar ./grafico ../Trabajo5/data/databases/datos.gra
+// usar ./grafico ../Trabajo5/data/databases/ datos.gra

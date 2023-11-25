@@ -1,8 +1,8 @@
 {
     "dirBase": "../Trabajo5/data/tree/",
     "objetos": [
-        {"tipo" : "archivo", "nombre" : "file1", "contenido" : "lalal" , "permisos" : ["escritura","lectura"]},
-        {"tipo" : "archivo", "nombre" : "file2", "contenido" : "AAAAA" , "permisos" : ["lectura"]},
+        {"tipo" : "archivo", "nombre" : "file1.txt", "contenido" : "lalal" , "permisos" : ["escritura","lectura"]},
+        {"tipo" : "archivo", "nombre" : "file2.doc", "contenido" : "AAAAA" , "permisos" : ["lectura"]},
         {"tipo" : "archivo", "nombre" : "file3", "contenido" : "AUGHH" , "permisos" : ["escritura"]},
         {
             "tipo" : "directorio",

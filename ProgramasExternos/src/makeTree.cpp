@@ -32,7 +32,7 @@ void createFile(string filePath, json file) {
     fileName = file["nombre"];
     contenido = file["contenido"];
 
-    ofstream outFile(filePath + fileName + ".txt"); // por ahora crea solo .txt
+    ofstream outFile(filePath + fileName);
     if (!outFile.is_open()) {
         cerr << "No se pudo abrir el archivo: " << endl;
         return;
@@ -41,7 +41,7 @@ void createFile(string filePath, json file) {
     outFile.close();
 
     fs::permissions(
-        filePath + fileName + ".txt",
+        filePath + fileName,
         fs::perms::owner_read | fs::perms::owner_write |
         fs::perms::group_read | fs::perms::group_write |
         fs::perms::others_read | fs::perms::others_write,
@@ -51,19 +51,19 @@ void createFile(string filePath, json file) {
     for (const auto& permiso : file["permisos"]) {
         if (permiso == "lectura") {
             fs::permissions(
-                filePath + fileName + ".txt",
+                filePath + fileName,
                 fs::perms::owner_read | fs::perms::group_read | fs::perms::group_read,
                 fs::perm_options::add
             );
-            cout << filePath + fileName + ".txt" << " lectura" << endl;
+            cout << filePath + fileName << " lectura" << endl;
         }
         if (permiso == "escritura") {
             fs::permissions(
-                filePath + fileName + ".txt",
+                filePath + fileName,
                 fs::perms::owner_write | fs::perms::group_write | fs::perms::group_write,
                 fs::perm_options::add
             );
-            cout << filePath + fileName + ".txt" << " escritura" << endl;
+            cout << filePath + fileName << " escritura" << endl;
         }
     }
 }
