@@ -51,7 +51,7 @@ main2.cpp: toma la salida de main.cpp y crea el indice invertido
 
 Usar en la carpeta Trabajo4
 
-    -set -o allexport 
+    set -o allexport 
     source config/.env
     make all
     

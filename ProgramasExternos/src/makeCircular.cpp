@@ -7,7 +7,8 @@
 #include "../include/json.hpp"
 #include <unistd.h>
 
-using namespace std;\
+using namespace std;
+namespace fs = std::filesystem;
 
 // ejecutar: ./makeCircular ../Trabajo5/data/databases/ circular.dre
 
@@ -43,12 +44,18 @@ void makeCircular(string root_path, string dirs, string data) {
 
     // cout << root_path + vectorDirs[0] << " " << root_path + vectorDirs[vectorDirs.size()-1] << endl;
     // Crea el enlace virtual (Creo que no sirve en wsl)
-    if (symlink((root_path + vectorDirs[0]).c_str(), (root_path + vectorDirs[vectorDirs.size() - 1]).c_str()) == 0) {
-        cout << "Enlace virtual creado exitosamente" << endl;
+    
+    string carpeta1 = root_path + vectorDirs[0];
+    string carpeta2 = root_path + vectorDirs[vectorDirs.size() - 1];
+    string enlace_virtual = "enlace_virtual";
+
+    try {
+        fs::create_symlink(carpeta1, carpeta2 + "/" + enlace_virtual);
+        cout << "Enlace simbólico creado correctamente." << endl;
+    } catch (const exception& e) {
+        cerr << "Error al crear enlace simbólico: " << e.what() << endl;
     }
-    else {
-        cout << "No se pudo crear el enlace virtual" << endl;
-    }
+
 
     // Crea los files en sus respectivas carpetas
     for (const auto& dirFiles : files) {
@@ -68,7 +75,7 @@ void makeCircular(string root_path, string dirs, string data) {
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
+if (argc != 3) {
         cerr << "Para ejecutar use: " << argv[0] << " <ruta_archivo.dre> <nombre_archivo.dre>" << endl;
         return EXIT_FAILURE;
     }
