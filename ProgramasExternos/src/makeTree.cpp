@@ -34,7 +34,7 @@ void createFile(string filePath, json file) {
 
     ofstream outFile(filePath + fileName);
     if (!outFile.is_open()) {
-        cerr << "No se pudo abrir el archivo: " << endl;
+        cerr << "No se pudo abrir el archivo: "  << fileName << endl;
         return;
     }
     outFile << contenido;
@@ -91,8 +91,29 @@ void createDirectory(string directoryPath, json directoryArray) {
 void makeTree(json treeJson) {
     string treeRoot;
     json treeObjs;
-    treeRoot = treeJson["dirBase"];
-    treeObjs = treeJson["objetos"];
+
+    try {
+        treeRoot = treeJson["dirBase"];
+    }
+    catch (const exception& e) {
+        cerr << "Formato del .dit invalido: 'dirBase' no existe" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // cout << treeRoot << endl;
+    // Verificacion carpeta tree
+    if (!fs::exists(treeRoot) && !fs::is_directory(treeRoot)) {
+        cout << "La carpeta '" << treeRoot << "' no existe por lo tanto se creara." << endl;
+        mkdir((treeRoot).c_str(), S_IRWXU | S_IRWXG | S_IRWXO);
+    }
+
+    try {
+        treeObjs = treeJson["objetos"];
+    }
+    catch (const exception& e) {
+        cerr << "Formato del .dit invalido: 'objetos' no existe" << endl;
+        exit(EXIT_FAILURE);
+    }
 
     // Llamo a la funcion recursiva createDirectory, toma el path de la carpeta y el arreglo de objetos de la misma (La primera ejecucion el con el dirBase)
     createDirectory(treeRoot, treeObjs);

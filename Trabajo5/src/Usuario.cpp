@@ -189,10 +189,10 @@ public:
         file.close();
     }
 
-    void makeTreeDirectory() {
+    void makeTreeDirectory(string dit_name) {
         ifstream file;
         string path_databases = getenv("PATH_DATABASES");
-        string dit_name = getenv("DOT_DIT_NAME");
+        // string dit_name = getenv("DOT_DIT_NAME");
         file.open(path_databases + dit_name);
         if (!file) {
             cout << "El archivo: " << dit_name << " no existe en el path: " << path_databases << endl;
@@ -207,15 +207,16 @@ public:
                 cerr << "Hubo un error al llamar al programa externo: '" << make_tree_name << "'" << endl;
             }
             else {
-                cout << "Se creo los directorios correctamente (metodo tree)" << endl;
+                cout << "Se crearon los directorios correctamente (metodo tree)" << endl;
+                cout << "Usar 'tree' en la consola para ver la estructura (En linux y en la carpeta correspondiente)" << endl;
             }
         }
     }
 
-    void makeCircularDirectory() {
+    void makeCircularDirectory(string dre_name) {
         ifstream file;
         string path_databases = getenv("PATH_DATABASES");
-        string dre_name = getenv("DOT_DRE_NAME");
+        // string dre_name = getenv("DOT_DRE_NAME");
         file.open(path_databases + dre_name);
         if (!file) {
             cout << "El archivo: " << dre_name << " no existe en el path: " << path_databases << endl;
@@ -230,15 +231,16 @@ public:
                 cerr << "Hubo un error al llamar al programa externo: '" << make_circular_name << "'" << endl;
             }
             else {
-                cout << "Se creo el directorios correctamente (metodo circular)" << endl;
+                cout << "Se crearon el directorios correctamente (metodo circular)" << endl;
+                cout << "Usar 'tree' en la consola para ver la estructura (En linux y en la carpeta correspondiente)" << endl;
             }
         }
     }
 
-    void makeGraph() {
+    void makeGraph(string gra_name) {
         ifstream file;
         string path_databases = getenv("PATH_DATABASES");
-        string gra_name = getenv("DOT_GRA_NAME");
+        // string gra_name = getenv("DOT_GRA_NAME");
         file.open(path_databases + gra_name);
         if (!file) {
             cout << "El archivo: " << gra_name << " no existe en el path: " << path_databases << endl;

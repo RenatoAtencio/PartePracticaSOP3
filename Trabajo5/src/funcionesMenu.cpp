@@ -118,19 +118,52 @@ void verSeleccion(bool& seguir, usuario user, int userInput, string nombreNuevoT
     }
     case 11: {
         if (user.verificarPermiso(11)) {
-            user.makeTreeDirectory();
+            string dit_name;
+            cin.ignore();
+            cout << "Ingrese archivo a procesar (solo nombre.dit, debe de estar en 'data/databases/'): ";
+            getline(cin, dit_name);
+            string extension;
+            size_t puntoPos = dit_name.find_last_of('.');
+            extension = dit_name.substr(puntoPos + 1);
+            if (extension != "dit") {
+                cerr << "Debe ser un archivo .dit" << endl;
+                break;
+            }
+            user.makeTreeDirectory(dit_name);
         }
         break;
     }
     case 12: {
         if (user.verificarPermiso(12)) {
-            user.makeCircularDirectory();
+            string dre_name;
+            cin.ignore();
+            cout << "Ingrese archivo a procesar (solo nombre.dre, debe de estar en 'data/databases/'): ";
+            getline(cin, dre_name);
+            string extension;
+            size_t puntoPos = dre_name.find_last_of('.');
+            extension = dre_name.substr(puntoPos + 1);
+            if (extension != "dre") {
+                cerr << "Debe ser un archivo .dre" << endl;
+                break;
+            }
+            user.makeCircularDirectory(dre_name);
         }
         break;
     }
     case 13: {
         if (user.verificarPermiso(13)) {
-            user.makeGraph();
+            string gra_name;
+            cin.ignore();
+            cout << "Ingrese archivo a procesar (solo nombre.gra, debe de estar en 'data/databases/'): ";
+            getline(cin, gra_name);
+            string extension;
+            size_t puntoPos = gra_name.find_last_of('.');
+            extension = gra_name.substr(puntoPos + 1);
+            if (extension != "gra") {
+                cerr << "Debe ser un archivo .gra" << endl;
+                break;
+            }
+            user.makeGraph(gra_name);
         }
         break;
     }

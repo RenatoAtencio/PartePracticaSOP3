@@ -29,6 +29,13 @@ vector<string> parseString(string data, char delimiter) {
 void makeCircular(string root_path, string dirs, string data) {
     size_t posRoot = root_path.find("=");
     root_path = root_path.substr(posRoot + 1);
+    // cout << root_path << endl;
+    // Verificacion carpeta dirbase
+    if (!fs::exists(root_path) && !fs::is_directory(root_path)) {
+        cout << "La carpeta '" << root_path << "' no existe." << endl;
+        exit(EXIT_FAILURE);
+    }
+
     // le quito el "dirs=" y lo paso los dirs a un vector
     size_t pos = dirs.find("=");
     dirs = dirs.substr(pos + 1);
@@ -91,6 +98,7 @@ if (argc != 3) {
         while (getline(file, linea)) {
             if (path_dirbase.empty() && (linea.rfind("dirbase", 0) == 0)) {
                 path_dirbase = linea;
+                // cout << path_dirbase << endl;
             }
             else if (dirs.empty() && (linea.rfind("dirs", 0) == 0)) {
                 dirs = linea;
