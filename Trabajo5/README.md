@@ -17,6 +17,10 @@ se tienen 10 opciones:
 + 7.- Contar palabras en el archivo dado
 + 8.- Preparar datos para indice invertido
 + 9.- Crear Indice invertido
++ 10.- Usar buscador
++ 11.- Crear sistema de directorio (arbol)
++ 12.- Crear sistema de directorio (Lista circular)
++ 13.- Procesamiento grafico
   
 Cualquier otro seleccion sera indicada como una funcionalidad no implementada.
 La opcion 5 verifica que el archivo este creado, si este no es el caso creara el archivo.
@@ -24,6 +28,8 @@ La opcion 6 tambien verifica que el archivo este creado pero si no es el caso so
 Opcion 7 busca el archivo con el path entregado al ejecutar y crea un archivo con el conteo de las palabras, la salida es dejada en el path entregado de salida.
 Opcion 8 carga los archivos 'file___.txt' entregados en la carpeta RawFiles, realiza el conteo de los mismo y deja el resultado en la carpeta OutputFiles
 Opcion 9 toma los archivos creados por la opcion 8 y crea un solo archivo '.idx', el cual es una combinacion de todos las salidas de conteo de la opcion 8
+Opcion 10 es abre un buscador que hace uso del archivo '.idx' y devuelve el resultado dependiendo del userInput
+Opciones 11 y 12 crean directorios y archivos segun el metodo indicado, hacen uso de archivo '.dit' y '.dre' respectivamente
 
 El programa se dividio en 6 archivos.cpp y uno .h:
 main.cpp : Es la columna del codigo y desde el mismo se llaman a las funciones que presentes en el main y en otros archivos.cpp,contiene la funcion separarTextoFormatoNormal que crea un vector de vectores de inputs con un formato var11,var12,var13;var21,var22,var23;var31,var,32,var33;
@@ -43,9 +49,12 @@ funciones.h : donde se declaran las funciones y que luego puede ser llamado a lo
 Tambien se tiene una carpeta ProgramasExternos donde se tienen 4 programas externos:
 eliminarSimbolos.py: elimina simbolos de un txt y deja la salida en la carpeta processedFiles
 contarPalabras.py: toma la salida de eliminarSimbolos y cuenta las palabras, luego guarda la salida en la carpeta outputFiles
-main.cpp: hace el mismo funcionamiento de los 2 programas anteriores pero usando multiples threads
-main2.cpp: toma la salida de main.cpp y crea el indice invertido
-
+countWords.cpp: hace el mismo funcionamiento de los 2 programas anteriores pero usando multiples threads
+makeInvertedIndex.cpp: toma las salidas de countWords.cpp y crea el indice invertido
+invertedIndexSearcher: toma el '.idx' y hace una busqueda de las palabras dadas
+makeCircular: crea los directorios y files segun el modelo circular
+makeTree: crea los directorios y files segun el modelo tree
+grafico: toma el '.gra' y grafica los puntos
 
 ### Compilacion
 
@@ -87,5 +96,31 @@ user.txt: son los usuarios seguidos por su rol
     
 config.en: contiene las variables de entorno que se van a cargar al usar el source config.env, las variables estan en mayusculas y los valores son paths principalmente, todo junto.
 
-    ej: DB_USERS=BasesDatos/users.txt
+    DOT_IDX_NAME=file.idx
+    DOT_DIT_NAME=arbol.dit
+    DOT_DRE_NAME=circular.dre
+    DOT_GRA_NAME=datos.gra
+    
+    COUNTWORD_NAME=countWords
+    INVERTEDINDEX_SEARCHER_NAME=invertedIndexSearcher
+    MAKE_INVERTEDINDEX_NAME=makeInvertedIndex
+    MAKE_TREE_NAME=makeTree
+    MAKE_CIRCULAR_NAME=makeCircular
+    MAKE_GRAPH_NAME=grafico
+    
+    DB_USERS=data/databases/users.txt
+    DB_PERMISOS=data/databases/permisos.txt
+    DB_MENU=data/databases/menu.txt
+    
+    PATH_DATABASES=data/databases/
+    PATH_RAWFILES=data/Files/RawFiles/
+    PATH_PROCESSEDFILES=data/Files/ProcessedFiles/
+    PATH_OUTPUTFILES=data/Files/OutputFiles/
+    PATH_PROGRAMAS_EXTERNOS_PYTHON=../ProgramasExternos/src/python/
+    PATH_PROGRAMAS_EXTERNOS_CPP=../ProgramasExternos/
+    
+    INVERTED_INDEX_FILE=data/Files/OutputFiles/file.idx
+    EXTENSION=txt
+    AMOUNT_THREADS=6
+    TOPK=5
     
